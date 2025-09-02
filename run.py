@@ -69,6 +69,19 @@ def add_expense():
     description = input("Description (optional): ").strip()
     amount = prompt_amount()
 
+    # Check if user wants to proceed with input
+    while True:
+        confirm = input(
+            f"\nSave this expense? [Y/N]\n"
+            f"Date: {date_value}, Category: {category}, Description: {description or ""}, Amount (in EUR): {amount}\n"
+        ).strip().lower()
+        if confirm in ("y", "yes"):
+            break
+        if confirm in ("n", "no"):
+            print("Cancelled. Expense not saved.")
+            return
+        print("Please answer with Y or N.")
+
 
 #Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
 add_expense()
