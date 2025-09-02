@@ -79,7 +79,8 @@ def main_menu():
         print("1 - Add an expense")
         print("2 - View totals")
         print("3 - Filter by category")
-        print("4 - Exit")
+        print("4 - Filter by date")
+        print("5 - Exit")
         choice = input("> ").strip()
 
         if choice == "1":
@@ -89,10 +90,12 @@ def main_menu():
         elif choice == "3":
             filter_by_category()
         elif choice == "4":
+            filter_by_date()
+        elif choice == "5":
             print("No expense saved. See you next time.")
             break
         else:
-            print("Invalid option. Please choose 1, 2, 3 or 4.")
+            print("Invalid option. Please choose 1, 2, 3, 4 or 5.")
 
         print("\n-----")
 
@@ -153,7 +156,7 @@ def view_totals():
         except (ValueError, IndexError):
             continue
 
-    print(f"Total expenses: {total:.2f} EUR")
+    print(f"\nTotal expenses: {total:.2f} EUR")
 
 
 def filter_by_category():
@@ -172,6 +175,24 @@ def filter_by_category():
         print(f"Expenses in category '{category}':")
         for row in filtered:
             print(*row, sep=", ")
+
+
+def filter_by_date():
+    """
+    Show all expenses for a chosen date (YYYY-MM-DD).
+    """
+    date_value = prompt_date()
+    expenses_worksheet = SHEET.worksheet("expenses")
+    data = expenses_worksheet.get_all_values()
+
+    filtered = [row for row in data[1:] if row[0] == date_value]
+
+    if not filtered:
+        print(f"No expenses found on {date_value}.")
+    else:
+        print(f"Expenses on {date_value}:")
+        for row in filtered:
+            print(*row, sep=", ", end=" EUR\n")
 
 
 # Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
