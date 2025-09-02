@@ -56,12 +56,35 @@ def prompt_amount() -> float:
         except ValueError:
             print("Please enter a valid number (e.g. 12,50).")
 
+
+def main_menu():
+    """
+    Provide user with a short welcome and mini menu to choose next step.
+    """
+    while True:
+        print("\nWelcome to the Expense Tracker")
+        print("What would you like to do?\n")
+        print("1 - Add an expense")
+        print("2 - Exit")
+        choice = input("> ").strip()
+
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            print("No expense saved. See you next time.")
+            break
+        else:
+            print("Invalid option. Please choose 1 or 2.")
+        
+        print("\n-----")
+
+
 def add_expense():
     """
     Ask user for expense details and add them to the Google Sheet.
     Validate all inputs to prevent crashed or bad data.
     """
-    print("\n---Add a New Expense---\n")
+    print("\n--- Add a New Expense ---")
 
     print("Please provide the following information about your expense...\n")
     date_value = prompt_date()
@@ -93,5 +116,6 @@ def add_expense():
         print(e)
 
 
-#Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
-add_expense()
+# Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
+# Add_expense()
+main_menu()
