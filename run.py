@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -12,8 +13,30 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker')
 
-expenses = SHEET.worksheet('expenses')
+#Helper Functions for Validation of inputs
+def prompt_date() -> str:
+    """
+    Ask for a date and validate format YYYY-MM-DD.
+    """
+    while True:
+        value = input("Date (YYYY-MM-DD): ").strip()
+        try:
+            parsed = datetime.strptime(value, "%Y-%m-%d")
+            if parsed.strftime("%Y-%m-%d") == value:
+                return value
+            else:
+                print("Please use the strict format YYYY-MM-DD (e.g. 2025-09-02).")
+        except ValueError:
+            print("Please enter a valid date in format YYYY-MM-DD.")
 
-data = expenses.get_all_values()
 
-print(data)
+def add_expense():
+    """
+    Ask user for expense details and add them to the Google Sheet.
+    """
+    print("\n---Add a New Expense---\n")
+
+
+#Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
+#add_expense()
+prompt_date()
