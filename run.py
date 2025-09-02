@@ -29,6 +29,15 @@ def prompt_date() -> str:
         except ValueError:
             print("Please enter a valid date in format YYYY-MM-DD.")
 
+def prompt_non_empty(label: str) -> str:
+    """
+    Ask for a non-empty string and trim extra spaces.
+    """
+    while True:
+        value = input(f"{label}: ").strip()
+        if value:
+            return value
+        print("This field cannot be empty.")
 
 def add_expense():
     """
@@ -39,4 +48,4 @@ def add_expense():
 
 #Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
 #add_expense()
-prompt_date()
+prompt_not_empty("Amount (in EUR)")
