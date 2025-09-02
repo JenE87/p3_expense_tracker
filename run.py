@@ -80,7 +80,8 @@ def main_menu():
         print("2 - View totals")
         print("3 - Filter by category")
         print("4 - Filter by date")
-        print("5 - Exit")
+        print("5 - View monthly totals")
+        print("6 - Exit")
         choice = input("> ").strip()
 
         if choice == "1":
@@ -92,10 +93,12 @@ def main_menu():
         elif choice == "4":
             filter_by_date()
         elif choice == "5":
+            view_monthly_totals()
+        elif choice == "6":
             print("No expense saved. See you next time.")
             break
         else:
-            print("Invalid option. Please choose 1, 2, 3, 4 or 5.")
+            print("Invalid option. Please choose 1, 2, 3, 4, 5 or 6.")
 
         print("\n-----")
 
@@ -196,6 +199,34 @@ def filter_by_date():
         print(f"Expenses on {date_value}:")
         for row in filtered:
             print(*row, sep=", ", end=" EUR\n")
+
+
+def view_monthly_totals():
+    """
+    Show total expenses grouped by year-month (YYYY-MM).
+    """
+    expenses_worksheet = SHEET.worksheet("expenses")
+    data = expenses_worksheet.get_all_values()
+
+    totals_by_month = {}
+
+    for row in data[1:]:
+        try:
+            # Parse date as datetime object
+            date_obj = datetime.strptime(row[0], "%Y-%m-%d")
+            # Extract month
+            month_key = date_obj.strftime("%Y-%m")
+            # Grab values and transform them to a float
+            amount = float(row[3].replace(",", "."))
+            totals_by_month[month_key] = totals_by_month.get(
+                month_key, 0) + amount
+
+        except (ValueError, IndexError):
+            continue
+
+    print("\nMonthly totals:")
+    for month, total in sorted(totals_by_month.items()):
+        print(f"{month}: {total:.2f} EUR")
 
 
 # Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
