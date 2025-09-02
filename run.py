@@ -45,22 +45,30 @@ def prompt_amount() -> float:
     """
     while True:
         raw = input("Amount (in EUR): ").strip()
-        raw = raw.replace(",", ".") #allow European decimal comma
+        # Allow European decimal comma
+        raw = raw.replace(",", ".")
         try:
             amount = float(raw)
             if amount > 0:
-                return round(amount, 2) #round to 2 decimals for consistency
+                # Round to 2 decimals for consistency
+                return round(amount, 2)
             print("Amount must be greater than 0.")
         except ValueError:
             print("Please enter a valid number (e.g. 12,50).")
 
 def add_expense():
     """
-    Ask user for expense details and add them to the Google Sheet.
+    Ask user for expense details.
+    Validate all inputs to prevent crashed or bad data.
     """
     print("\n---Add a New Expense---\n")
 
+    date_value = prompt_date()
+    category = prompt_non_empty("Category")
+    # Description is optional, but with trimmed blank spaces
+    description = input("Description (optional): ").strip()
+    amount = prompt_amount()
+
 
 #Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
-#add_expense()
-prompt_amount()
+add_expense()
