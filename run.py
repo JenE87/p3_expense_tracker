@@ -2,6 +2,12 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
+# Predefined categories
+CATEGORIES = [
+    "Food", "Transport", "Utilities", "Entertainment",
+    "Insurance", "Medical", "Other"
+    ]
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -13,7 +19,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker')
 
-#Helper Functions for Validation of inputs
+
 def prompt_date() -> str:
     """
     Ask for a date and validate format YYYY-MM-DD.
@@ -25,19 +31,25 @@ def prompt_date() -> str:
             if parsed.strftime("%Y-%m-%d") == value:
                 return value
             else:
-                print("Please use the strict format YYYY-MM-DD (e.g. 2025-09-02).")
+                print("Please use the strict format YYYY-MM-DD"
+                      "(e.g. 2025-09-02).")
         except ValueError:
             print("Please enter a valid date in format YYYY-MM-DD.")
 
-def prompt_non_empty(label: str) -> str:
+
+def prompt_category() -> str:
     """
-    Ask for a non-empty string and trim extra spaces.
+    Ask for a category and validate against predefined list.
+    Case-insensitive check.
     """
     while True:
-        value = input(f"{label}: ").strip()
-        if value:
+        value = input(
+                f"Category ({', '.join(CATEGORIES)}): "
+                ).strip().capitalize()
+        if value in CATEGORIES:
             return value
-        print("This field cannot be empty.")
+        print(f"Invalid category. Please choose from {', '.join(CATEGORIES)}")
+
 
 def prompt_amount() -> float:
     """
@@ -75,7 +87,7 @@ def main_menu():
             break
         else:
             print("Invalid option. Please choose 1 or 2.")
-        
+
         print("\n-----")
 
 
@@ -88,7 +100,7 @@ def add_expense():
 
     print("Please provide the following information about your expense...\n")
     date_value = prompt_date()
-    category = prompt_non_empty("Category")
+    category = prompt_category()
     # Description is optional, but with trimmed blank spaces
     description = input("Description (optional): ").strip()
     amount = prompt_amount()
@@ -97,7 +109,9 @@ def add_expense():
     while True:
         confirm = input(
             f"\nSave this expense? [Y/N]\n"
-            f"Date: {date_value}, Category: {category}, Description: {description or ""}, Amount (in EUR): {amount}\n"
+            f"Date: {date_value}, Category: {category}, "
+            "Description: {description or ""},"
+            "Amount (in EUR): {amount}\n"
         ).strip().lower()
         if confirm in ("y", "yes"):
             break
@@ -109,7 +123,10 @@ def add_expense():
     # Add expense to Google Sheet
     try:
         expenses_worksheet = SHEET.worksheet("expenses")
-        expenses_worksheet.append_row([date_value, category, description, amount], value_input_option="USER_ENTERED")
+        expenses_worksheet.append_row(
+            [date_value, category, description, amount],
+            value_input_option="USER_ENTERED"
+            )
         print("Expense added successfully!")
     except Exception as e:
         print("Could not save the expense. Please try again later.")
