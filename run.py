@@ -78,7 +78,8 @@ def main_menu():
         print("What would you like to do?\n")
         print("1 - Add an expense")
         print("2 - View totals")
-        print("3 - Exit")
+        print("3 - Filter by category")
+        print("4 - Exit")
         choice = input("> ").strip()
 
         if choice == "1":
@@ -86,10 +87,12 @@ def main_menu():
         elif choice == "2":
             view_totals()
         elif choice == "3":
+            filter_by_category()
+        elif choice == "4":
             print("No expense saved. See you next time.")
             break
         else:
-            print("Invalid option. Please choose 1 or 2.")
+            print("Invalid option. Please choose 1, 2, 3 or 4.")
 
         print("\n-----")
 
@@ -112,9 +115,7 @@ def add_expense():
     while True:
         confirm = input(
             f"\nSave this expense? [Y/N]\n"
-            f"Date: {date_value}, Category: {category}, "
-            "Description: {description or ""},"
-            "Amount (in EUR): {amount}\n"
+            f"Date: {date_value}, Category: {category}, Description: {description or ""}, Amount: {amount:.2f} EUR\n> "
         ).strip().lower()
         if confirm in ("y", "yes"):
             break
@@ -144,6 +145,7 @@ def view_totals():
     data = expenses_worksheet.get_all_values()
 
     total = 0.0
+    # Skip header
     for row in data[1:]:
         try:
             amount = float(row[3].replace(",", "."))
@@ -152,6 +154,24 @@ def view_totals():
             continue
 
     print(f"Total expenses: {total:.2f} EUR")
+
+
+def filter_by_category():
+    """
+    Show all expenses for a chosen category.
+    """
+    category = prompt_category()
+    expenses_worksheet = SHEET.worksheet("expenses")
+    data = expenses_worksheet.get_all_values()
+
+    filtered = [row for row in data[1:] if row[1].lower() == category.lower()]
+
+    if not filtered:
+        print(f"No expenses found in category '{category}'.")
+    else:
+        print(f"Expenses in category '{category}':")
+        for row in filtered:
+            print(*row, sep=", ")
 
 
 # Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
