@@ -118,7 +118,10 @@ def add_expense():
     while True:
         confirm = input(
             f"\nSave this expense? [Y/N]\n"
-            f"Date: {date_value}, Category: {category}, Description: {description or ""}, Amount: {amount:.2f} EUR\n> "
+            f"Date: {date_value}, "
+            f"Category: {category}, "
+            f"Description: {description or ""}, "
+            f"Amount: {amount:.2f} EUR\n> "
         ).strip().lower()
         if confirm in ("y", "yes"):
             break
