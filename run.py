@@ -39,6 +39,21 @@ def prompt_non_empty(label: str) -> str:
             return value
         print("This field cannot be empty.")
 
+def prompt_amount() -> float:
+    """
+    Ask for positive amount (accepts "," or ".").
+    """
+    while True:
+        raw = input("Amount (in EUR): ").strip()
+        raw = raw.replace(",", ".") #allow European decimal comma
+        try:
+            amount = float(raw)
+            if amount > 0:
+                return round(amount, 2) #round to 2 decimals for consistency
+            print("Amount must be greater than 0.")
+        except ValueError:
+            print("Please enter a valid number (e.g. 12,50).")
+
 def add_expense():
     """
     Ask user for expense details and add them to the Google Sheet.
@@ -48,4 +63,4 @@ def add_expense():
 
 #Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
 #add_expense()
-prompt_not_empty("Amount (in EUR)")
+prompt_amount()
