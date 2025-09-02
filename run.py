@@ -77,12 +77,15 @@ def main_menu():
         print("\nWelcome to the Expense Tracker")
         print("What would you like to do?\n")
         print("1 - Add an expense")
-        print("2 - Exit")
+        print("2 - View totals")
+        print("3 - Exit")
         choice = input("> ").strip()
 
         if choice == "1":
             add_expense()
         elif choice == "2":
+            view_totals()
+        elif choice == "3":
             print("No expense saved. See you next time.")
             break
         else:
@@ -133,6 +136,23 @@ def add_expense():
         print(e)
 
 
+def view_totals():
+    """
+    Calculate and display the total of all expenses.
+    """
+    expenses_worksheet = SHEET.worksheet("expenses")
+    data = expenses_worksheet.get_all_values()
+
+    total = 0.0
+    for row in data[1:]:
+        try:
+            amount = float(row[3].replace(",", "."))
+            total += amount
+        except (ValueError, IndexError):
+            continue
+
+    print(f"Total expenses: {total:.2f} EUR")
+
+
 # Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
-# Add_expense()
 main_menu()
