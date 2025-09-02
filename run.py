@@ -58,11 +58,12 @@ def prompt_amount() -> float:
 
 def add_expense():
     """
-    Ask user for expense details.
+    Ask user for expense details and add them to the Google Sheet.
     Validate all inputs to prevent crashed or bad data.
     """
     print("\n---Add a New Expense---\n")
 
+    print("Please provide the following information about your expense...\n")
     date_value = prompt_date()
     category = prompt_non_empty("Category")
     # Description is optional, but with trimmed blank spaces
@@ -81,6 +82,15 @@ def add_expense():
             print("Cancelled. Expense not saved.")
             return
         print("Please answer with Y or N.")
+
+    # Add expense to Google Sheet
+    try:
+        expenses_worksheet = SHEET.worksheet("expenses")
+        expenses_worksheet.append_row([date_value, category, description, amount], value_input_option="USER_ENTERED")
+        print("Expense added successfully!")
+    except Exception as e:
+        print("Could not save the expense. Please try again later.")
+        print(e)
 
 
 #Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
