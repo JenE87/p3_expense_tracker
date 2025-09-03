@@ -94,7 +94,6 @@ This Project was deployed using Code Institute's mock terminal for Heroku.
 
 ## Credits
 ### Code
-/*/*/*/  
 All code is inspired by lessons and modules included in the Code Institute's Full Stack Software Development Common Curriculum in the Learning Management System.
 
 Other learning resources:
