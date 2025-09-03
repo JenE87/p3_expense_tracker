@@ -25,7 +25,7 @@ def prompt_date() -> str:
     Ask for a date and validate format YYYY-MM-DD.
     """
     while True:
-        value = input("Date (YYYY-MM-DD): ").strip()
+        value = input("Date (YYYY-MM-DD): \n").strip()
         try:
             parsed = datetime.strptime(value, "%Y-%m-%d")
             if parsed.strftime("%Y-%m-%d") == value:
@@ -56,7 +56,7 @@ def prompt_amount() -> float:
     Ask for positive amount (accepts "," or ".").
     """
     while True:
-        raw = input("Amount (in EUR): ").strip()
+        raw = input("Amount (in EUR): \n").strip()
         # Allow European decimal comma
         raw = raw.replace(",", ".")
         try:
@@ -124,7 +124,7 @@ def add_expense():
             f"Date: {date_value}, "
             f"Category: {category}, "
             f"Description: {description or ""}, "
-            f"Amount: {amount:.2f} EUR\n> "
+            f"Amount: {amount:.2f} EUR\n> \n"
         ).strip().lower()
         if confirm in ("y", "yes"):
             break
