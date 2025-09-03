@@ -95,7 +95,7 @@ def main_menu():
         elif choice == "5":
             view_monthly_totals()
         elif choice == "6":
-            print("No expense saved. See you next time.")
+            print("Program closed successfully. See you next time.")
             break
         else:
             print("Invalid option. Please choose 1, 2, 3, 4, 5 or 6.")
