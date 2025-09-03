@@ -4,7 +4,7 @@ A simple, reliable command-line Expense Tracker written in Python. It stores you
 [Here is the live Version of my project.](https://p3-expense-tracker-f310cbe43264.herokuapp.com/)
 
 ## Project Overview
-WHAT DOES THE TRACKER DO 
+**STILL TO BE INCLUDED** WHAT DOES THE TRACKER DO & 
 FOR WHO IS THE TRACKER USEFUL
 
 ## Features
@@ -78,7 +78,7 @@ Passed the code through a PEP8 linter and confirmed there are no problems.
 
 ### Fixed Bugs
 - **Category Input Validation**: Initially, the input was normalized using .capitalize(). This meant both food and Food were accepted, but variations like fOOD were rejected. The fix was to switch to .lower() comparison, ensuring the validation is now fully case-insensitive and consistent.
-- **Heroku Deployment Error (Procfile & .gitignore): Incorrect adjustments in the `Procfile` and `.gitignore` caused Heroku deployment to fail. Resetting both files to the original template Setup fixed the issue.
+- **Heroku Deployment Error (Procfile & .gitignore)**: Incorrect adjustments in the `Procfile` and `.gitignore` caused Heroku deployment to fail. Resetting both files to the original template Setup fixed the issue.
 - **Python Version Mismatch**: Deployment failed because the `.python-version` file specified `3.12.2`. Heroku only accepts major versions, so this was corrected to `3.12`, resolving the bug.
 
 ### Unfixed Bugs
