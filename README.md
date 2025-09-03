@@ -43,23 +43,24 @@ FOR WHO IS THE TRACKER USEFUL
 ### Manual Testing
 | Feature                           | Test Input                     | Expected Result               | Pass/Fail |
 |-----------------------------------|--------------------------------|-------------------------------|-----------|
-| Add Expense - Date validation     | `2025-09-02`                   | Accepted, saved correctly     |           |
-|                                   | `02-09-2025`                   | Rejected, prompt again        |           |
-|                                   | `2025-9-2`                     | Rejected, prompt again        |           |
-|                                   | `abcd`                         | Rejected, prompt again        |           |
-| Add Expense - Category Validation | `Food`                         | Accepted                      |           |
-|                                   | `food`                         | Accepted (case-insensitive)   |           |
-|                                   | `invalid`                      | Rejected, prompt again        |           |
-| Add Expense - Description         | (empty Input)                  | Saved as blank                |           |
-|                                   | `Teamlunch`                    | Saved correctly               |           |
-| Add Expense - Amount Validation   | `12.50`                        | Accepted as `12.50`           |           |
-|                                   | `12,50`                        | Accepted as `12.50`           |           |
-|                                   | `1.879`                        | Accepted as `1.88`            |           |
-|                                   | `-5`                           | Rejected, prompt again        |           |
-|                                   | `abc`                          | Rejected, prompt again        |           |
-| Confirmation Prompt               | Input `Y`                      | Expense saved to Google Sheet |           |
-|                                   | Input `N`                      | Expense cancelled             |           |
-| View Totals	                    | (after adding known values)    | Shows correct sum             |           |
+| Add Expense - Date validation     | `2025-09-02`                   | Accepted, saved correctly     | Pass      |
+|                                   | `02-09-2025`                   | Rejected, prompt again        | Pass      |
+|                                   | `2025-9-2`                     | Rejected, prompt again        | Pass      |
+|                                   | `abcd`                         | Rejected, prompt again        | Pass      |
+| Add Expense - Category Validation | `Food`                         | Accepted                      | Pass      |
+|                                   | `food`                         | Accepted (case-insensitive)   | Pass      |
+|                                   | `fOOD`                         | Accepted (case-insensitive)   | Pass      |
+|                                   | `invalid`                      | Rejected, prompt again        | Pass      |
+| Add Expense - Description         | (empty Input)                  | Saved as blank                | Pass      |
+|                                   | `Teamlunch`                    | Saved correctly               | Pass      |
+| Add Expense - Amount Validation   | `12.50`                        | Accepted as `12.50`           | Pass      |
+|                                   | `12,50`                        | Accepted as `12.50`           | Pass      |
+|                                   | `1.879`                        | Accepted as `1.88`            | Pass      |
+|                                   | `-5`                           | Rejected, prompt again        | Pass      |
+|                                   | `abc`                          | Rejected, prompt again        | Pass      |
+| Confirmation Prompt               | Input `Y`                      | Expense saved to Google Sheet | Pass      |
+|                                   | Input `N`                      | Expense cancelled             | Pass      |
+| View Totals	                    | (after adding known values)    | Shows correct total expenses  | Pass      |
 | Filter by Category                | Enter `Food`                   | Only rows with Food expenses displayed |           |
 |                                   | Enter `invalid`                | Show invalid input, prompt again       |           |
 | Filter by Date                    | Enter `2025-09-02`             | Expenses only from this date displayed |           |
