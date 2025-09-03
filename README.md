@@ -1,9 +1,7 @@
 # Expense Tracker 
-A command-line Expense Tracker written in Python that stores and manages expenses using a connected Google Sheet. The Tracker run in the Code Institute mock terminal on Heroku.
+A simple, reliable command-line Expense Tracker written in Python. It stores your entries in a connected Google Sheet, so your data stays transparent and portable. The app runs in the Code Institute mock terminal on Heroku and focuses on robust input validation and clean UX in the terminal.
 
-SHORT INTRO TO BE ADDED
-
-Here is the live Version of the Expense Tracker. LINKLINKLINK
+[Here is the live Version of my project.](https://p3-expense-tracker-f310cbe43264.herokuapp.com/)
 
 ## Project Overview
 WHAT DOES THE TRACKER DO 
@@ -61,25 +59,27 @@ FOR WHO IS THE TRACKER USEFUL
 | Confirmation Prompt               | Input `Y`                      | Expense saved to Google Sheet | Pass      |
 |                                   | Input `N`                      | Expense cancelled             | Pass      |
 | View Totals	                    | (after adding known values)    | Shows correct total expenses  | Pass      |
-| Filter by Category                | Enter `Food`                   | Only rows with Food expenses displayed |           |
-|                                   | Enter `invalid`                | Show invalid input, prompt again       |           |
-| Filter by Date                    | Enter `2025-09-02`             | Expenses only from this date displayed |           |
-|                                   | Enter `2025-02-02` (no data)   | Message displayed that no data found for DATE      |         |
-| View Monthly Totals               | (adding totals automatically)  | Groups totals per month correctly      |           |
-| Menu Navigation                   | `1` (Add an expense)           | Add Expense feature initiates with prompt for DATE |         |
-|                                   | `2` (View Totals)              | Total expenses displayed               |           |
-|                                   | `3` (Filter by category)       | Category prompt displayed              |           |
-|                                   | `4` (Filter by date)           | Date prompt (YYYY-MM-DD) displayed     |           |
-|                                   | `5` (View Monthly totals)      | Groups totals per month correctly      |           |
-|                                   | `6` (Exit)                     | Program Ends. Exit message displayed   |           |
-|                                   | `9` (invalid option)           | Rejected, prompt again                 |           |
+| Filter by Category                | Enter `Food`                   | Only rows with Food expenses displayed | Pass      |
+|                                   | Enter `invalid`                | Rejected, prompt again        | Pass      |
+| Filter by Date                    | Enter `2025-09-02`             | Expenses only from this date displayed | Pass      |
+|                                   | Enter `2025-02-02` (no data)   | Message displayed that no data found for DATE      |  Pass   |
+| View Monthly Totals               | (adding totals automatically)  | Groups totals per month correctly      | Pass      |
+| Menu Navigation                   | `1` (Add an expense)           | Add Expense feature initiates with prompt for DATE | Pass    |
+|                                   | `2` (View Totals)              | Total expenses displayed               | Pass      |
+|                                   | `3` (Filter by category)       | Category prompt displayed              | Pass      |
+|                                   | `4` (Filter by date)           | Date prompt (YYYY-MM-DD) displayed     | Pass      |
+|                                   | `5` (View Monthly totals)      | Groups totals per month correctly      | Pass      |
+|                                   | `6` (Exit)                     | Program Ends. Exit message displayed   | Pass      |
+|                                   | `9` (invalid option)           | Rejected, prompt again                 | Pass      |
 
 
 ### PEP8 Python Validator 
 Passed the code through a PEP8 linter and confirmed there are no problems.
 
 ### Fixed Bugs
-- 
+- **Category Input Validation**: Initially, the input was normalized using .capitalize(). This meant both food and Food were accepted, but variations like fOOD were rejected. The fix was to switch to .lower() comparison, ensuring the validation is now fully case-insensitive and consistent.
+- **Heroku Deployment Error (Procfile & .gitignore): Incorrect adjustments in the `Procfile` and `.gitignore` caused Heroku deployment to fail. Resetting both files to the original template Setup fixed the issue.
+- **Python Version Mismatch**: Deployment failed because the `.python-version` file specified `3.12.2`. Heroku only accepts major versions, so this was corrected to `3.12`, resolving the bug.
 
 ### Unfixed Bugs
 None
@@ -104,37 +104,4 @@ Other learning resources:
 - [Stack Overflow](https://stackoverflow.com/questions)
 - [Codeacademy Forums](https://discuss.codecademy.com/c/faqs/python-faq/1793)
 
---------------------------------
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 26, 2025**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
