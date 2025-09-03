@@ -40,15 +40,15 @@ def prompt_date() -> str:
 def prompt_category() -> str:
     """
     Ask for a category and validate against predefined list.
-    Case-insensitive check.
+    Case-insensitive input.
     """
     while True:
-        value = input(
-                f"Category ({', '.join(CATEGORIES)}): "
-                ).strip().capitalize()
-        if value in CATEGORIES:
-            return value
-        print(f"Invalid category. Please choose from {', '.join(CATEGORIES)}")
+        raw = input(
+                f"Category ({', '.join(CATEGORIES)}): ").strip()
+        for c in CATEGORIES:
+            if raw.lower() == c.lower():
+                return c
+        print(f"Invalid category. Please choose from: {', '.join(CATEGORIES)}")
 
 
 def prompt_amount() -> float:
