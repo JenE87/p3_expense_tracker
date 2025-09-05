@@ -5,7 +5,7 @@ from datetime import datetime
 # Predefined categories
 CATEGORIES = [
     "Food", "Transport", "Utilities", "Entertainment",
-    "Insurance", "Medical", "Other"
+    "Insurance", "Other"
     ]
 
 SCOPE = [
@@ -229,5 +229,5 @@ def view_monthly_totals():
         print(f"{month}: {total:.2f} EUR")
 
 
-# Temporary manual test (TO BE DELETED LATER AND REPLACED BY A MAIN() FUNCTION)
-main_menu()
+if __name__ == "__main__":
+	main_menu()
