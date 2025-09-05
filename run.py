@@ -230,4 +230,4 @@ def view_monthly_totals():
 
 
 if __name__ == "__main__":
-	main_menu()
+    main_menu()
