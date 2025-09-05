@@ -193,7 +193,7 @@ def filter_by_category():
     else:
         print(f"Expenses in category '{category}':")
         for row in filtered:
-            print(*row, sep=", ")
+            print(f"{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]} EUR")
 
 
 def filter_by_date():
@@ -211,7 +211,7 @@ def filter_by_date():
     else:
         print(f"Expenses on {date_value}:")
         for row in filtered:
-            print(*row, sep=", ", end=" EUR\n")
+            print(f"{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]} EUR")
 
 
 def view_monthly_totals():
