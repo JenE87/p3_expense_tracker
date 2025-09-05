@@ -48,20 +48,6 @@ def prompt_name() -> str:
         print("Name cannot be empty. Please enter your name.")
 
 
-def prompt_category() -> str:
-    """
-    Ask for a category and validate against predefined list.
-    Case-insensitive input.
-    """
-    while True:
-        raw = input(
-                f"Category ({', '.join(CATEGORIES)}): ").strip()
-        for c in CATEGORIES:
-            if raw.lower() == c.lower():
-                return c
-        print(f"Invalid category. Please choose from: {', '.join(CATEGORIES)}")
-
-
 def prompt_amount() -> float:
     """
     Ask for positive amount (accepts "," or ".").
@@ -78,6 +64,20 @@ def prompt_amount() -> float:
             print("Amount must be greater than 0.")
         except ValueError:
             print("Please enter a valid number (e.g. 12,50).")
+
+
+def prompt_category() -> str:
+    """
+    Ask for a category and validate against predefined list.
+    Case-insensitive input.
+    """
+    while True:
+        raw = input(
+                f"Category ({', '.join(CATEGORIES)}): ").strip()
+        for c in CATEGORIES:
+            if raw.lower() == c.lower():
+                return c
+        print(f"Invalid category. Please choose from: {', '.join(CATEGORIES)}")
 
 
 def main_menu():
@@ -127,10 +127,10 @@ def add_expense():
     print("Please provide the following information about your expense...\n")
     date_value = prompt_date()
     name = prompt_name()
+    amount = prompt_amount()
     category = prompt_category()
     # Description is optional, but with trimmed blank spaces
     description = input("Description (optional): ").strip()
-    amount = prompt_amount()
 
     # Check if user wants to proceed with input
     while True:
@@ -138,9 +138,9 @@ def add_expense():
             f"\nSave this expense? [Y/N]\n"
             f"Date: {date_value}, "
             f"Name: {name}, "
+            f"Amount: {amount:.2f} EUR, "
             f"Category: {category}, "
-            f"Description: {description or ''}, "
-            f"Amount: {amount:.2f} EUR\n> \n"
+            f"Description: {description or ''}\n> \n"
         ).strip().lower()
         if confirm in ("y", "yes"):
             break
@@ -153,7 +153,7 @@ def add_expense():
     try:
         expenses_worksheet = SHEET.worksheet("expenses")
         expenses_worksheet.append_row(
-            [date_value, name, category, description, amount],
+            [date_value, name, amount, category, description],
             value_input_option="USER_ENTERED"
             )
         print("Expense added successfully!")
@@ -173,7 +173,7 @@ def view_totals():
     # Skip header
     for row in data[1:]:
         try:
-            amount = float(row[4].replace(",", "."))
+            amount = float(row[2].replace(",", "."))
             total += amount
         except (ValueError, IndexError):
             continue
@@ -196,8 +196,8 @@ def filter_by_name():
     else:
         print(f"Expenses of '{name}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
-                  f"Description: {row[3]}, Amount: {row[4]} EUR")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def filter_by_category():
@@ -208,15 +208,15 @@ def filter_by_category():
     expenses_worksheet = SHEET.worksheet("expenses")
     data = expenses_worksheet.get_all_values()
 
-    filtered = [row for row in data[1:] if row[2].lower() == category.lower()]
+    filtered = [row for row in data[1:] if row[3].lower() == category.lower()]
 
     if not filtered:
         print(f"No expenses found in category '{category}'.")
     else:
         print(f"Expenses in category '{category}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
-                  f"Description: {row[3]}, Amount: {row[4]} EUR")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def filter_by_date():
@@ -234,8 +234,8 @@ def filter_by_date():
     else:
         print(f"Expenses on {date_value}:")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
-                  f"Description: {row[3]}, Amount: {row[4]} EUR")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def view_monthly_totals():
@@ -254,7 +254,7 @@ def view_monthly_totals():
             # Extract month
             month_key = date_obj.strftime("%Y-%m")
             # Grab values and transform them to a float
-            amount = float(row[4].replace(",", "."))
+            amount = float(row[2].replace(",", "."))
             totals_by_month[month_key] = totals_by_month.get(
                 month_key, 0) + amount
 
