@@ -42,7 +42,7 @@ def prompt_name() -> str:
     Ask user for their name. Field needs to be filled and not empty.
     """
     while True:
-        value = input("Name: \n").strip().capitalize()
+        value = input("Name: \n").strip()
         if value:
             return value
         print("Name cannot be empty. Please enter your name.")
@@ -89,10 +89,11 @@ def main_menu():
         print("What would you like to do?\n")
         print("1 - Add an expense")
         print("2 - View totals")
-        print("3 - Filter by category")
-        print("4 - Filter by date")
-        print("5 - View monthly totals")
-        print("6 - Exit")
+        print("3 - Filter by name")
+        print("4 - Filter by category")
+        print("5 - Filter by date")
+        print("6 - View monthly totals")
+        print("7 - Exit")
         choice = input("> ").strip()
 
         if choice == "1":
@@ -100,16 +101,18 @@ def main_menu():
         elif choice == "2":
             view_totals()
         elif choice == "3":
-            filter_by_category()
+            filter_by_name()
         elif choice == "4":
-            filter_by_date()
+            filter_by_category()
         elif choice == "5":
-            view_monthly_totals()
+            filter_by_date()
         elif choice == "6":
+            view_monthly_totals()
+        elif choice == "7":
             print("Program closed successfully. See you next time.")
             break
         else:
-            print("Invalid option. Please choose 1, 2, 3, 4, 5 or 6.")
+            print("Invalid option. Please choose 1, 2, 3, 4, 5, 6 or 7.")
 
         print("\n-----")
 
@@ -178,6 +181,25 @@ def view_totals():
     print(f"\nTotal expenses: {total:.2f} EUR")
 
 
+def filter_by_name():
+    """
+    Show all expenses for a chosen name.
+    """
+    name = prompt_name()
+    expenses_worksheet = SHEET.worksheet("expenses")
+    data = expenses_worksheet.get_all_values()
+
+    filtered = [row for row in data[1:] if row[1].lower() == name.lower()]
+
+    if not filtered:
+        print(f"No expenses found for '{name}'.")
+    else:
+        print(f"Expenses of '{name}':")
+        for row in filtered:
+            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
+                  f"Description: {row[3]}, Amount: {row[4]} EUR")
+
+
 def filter_by_category():
     """
     Show all expenses for a chosen category.
@@ -193,7 +215,8 @@ def filter_by_category():
     else:
         print(f"Expenses in category '{category}':")
         for row in filtered:
-            print(f"{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]} EUR")
+            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
+                  f"Description: {row[3]}, Amount: {row[4]} EUR")
 
 
 def filter_by_date():
@@ -211,7 +234,8 @@ def filter_by_date():
     else:
         print(f"Expenses on {date_value}:")
         for row in filtered:
-            print(f"{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]} EUR")
+            print(f"Date: {row[0]}, Name: {row[1]}, Category: {row[2]}, "
+                  f"Description: {row[3]}, Amount: {row[4]} EUR")
 
 
 def view_monthly_totals():
