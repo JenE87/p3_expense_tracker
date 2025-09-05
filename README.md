@@ -10,31 +10,32 @@ It is useful for:
 - Individuals who want to keep track of their personal budget
 - Families who want shared visibility of their spending
 - Small groups (e.g. roommates, friends, colleagues) who split costs and need an easy record
+
 The focus is on simplicity, strict input validation, and reliable data storage.
 <img width="753" height="466" alt="Screenshot 2025-09-05 134803" src="https://github.com/user-attachments/assets/8b200302-538a-4ae6-8b10-bda41ac74541" />
 
 ## Features
 ### Existing Features
 - Add new expenses with strict input Validation
-  <img width="735" height="394" alt="Screenshot 2025-09-05 141003" src="https://github.com/user-attachments/assets/102dbb8c-2028-4a54-89bb-66e64d4cad69" />
+<img width="735" height="394" alt="Screenshot 2025-09-05 141003" src="https://github.com/user-attachments/assets/102dbb8c-2028-4a54-89bb-66e64d4cad69" />
 
 - Data is stored in Google Sheets via API
-  <img width="733" height="357" alt="Screenshot 2025-09-05 141030" src="https://github.com/user-attachments/assets/bdf0a98b-0329-452a-af23-ff456db8a1d2" />
+<img width="733" height="357" alt="Screenshot 2025-09-05 141030" src="https://github.com/user-attachments/assets/bdf0a98b-0329-452a-af23-ff456db8a1d2" />
 
 - View total expenses
-  <img width="748" height="297" alt="image" src="https://github.com/user-attachments/assets/7e6472cd-6f2c-467f-a1ce-8f4345f5e709" />
+<img width="748" height="297" alt="image" src="https://github.com/user-attachments/assets/7e6472cd-6f2c-467f-a1ce-8f4345f5e709" />
 
 - Filter by name
-  <img width="733" height="331" alt="image" src="https://github.com/user-attachments/assets/b0002aea-9c1e-4102-8ee0-1c03b1d654d4" />
+<img width="733" height="331" alt="image" src="https://github.com/user-attachments/assets/b0002aea-9c1e-4102-8ee0-1c03b1d654d4" />
 
 - Filter by category
-  <img width="738" height="246" alt="image" src="https://github.com/user-attachments/assets/d3f7b0e8-ad07-42be-aebd-cd4fdac8a4ed" />
+<img width="738" height="246" alt="image" src="https://github.com/user-attachments/assets/d3f7b0e8-ad07-42be-aebd-cd4fdac8a4ed" />
 
 - Filter by date
-  <img width="732" height="285" alt="image" src="https://github.com/user-attachments/assets/da6595ec-9b5f-40eb-8aa3-7095d1976b35" />
+<img width="732" height="285" alt="image" src="https://github.com/user-attachments/assets/da6595ec-9b5f-40eb-8aa3-7095d1976b35" />
 
 - View monthly totals
-  <img width="740" height="180" alt="image" src="https://github.com/user-attachments/assets/29490d11-dbc6-42a7-a63b-2eca2d8a3427" />
+<img width="740" height="180" alt="image" src="https://github.com/user-attachments/assets/29490d11-dbc6-42a7-a63b-2eca2d8a3427" />
 
 
 ## Future Features (optional)
@@ -58,7 +59,8 @@ The focus is on simplicity, strict input validation, and reliable data storage.
   	- Amount (in EUR)
 	- Category
 	- Description
-<img width="719" height="182" alt="image" src="https://github.com/user-attachments/assets/3651c14e-a34d-413c-9b07-0039093e8371" />
+<img width="744" height="435" alt="image" src="https://github.com/user-attachments/assets/eab6c78a-96c3-4fa0-87ed-2ebeec4d38fa" />
+
 
 ## Testing
 ### Manual Testing
