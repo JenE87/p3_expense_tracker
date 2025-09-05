@@ -37,6 +37,17 @@ def prompt_date() -> str:
             print("Please enter a valid date in format YYYY-MM-DD.")
 
 
+def prompt_name() -> str:
+    """
+    Ask user for their name. Field needs to be filled and not empty.
+    """
+    while True:
+        value = input("Name: \n").strip().capitalize()
+        if value:
+            return value
+        print("Name cannot be empty. Please enter your name.")
+
+
 def prompt_category() -> str:
     """
     Ask for a category and validate against predefined list.
@@ -112,6 +123,7 @@ def add_expense():
 
     print("Please provide the following information about your expense...\n")
     date_value = prompt_date()
+    name = prompt_name()
     category = prompt_category()
     # Description is optional, but with trimmed blank spaces
     description = input("Description (optional): ").strip()
@@ -122,8 +134,9 @@ def add_expense():
         confirm = input(
             f"\nSave this expense? [Y/N]\n"
             f"Date: {date_value}, "
+            f"Name: {name}, "
             f"Category: {category}, "
-            f"Description: {description or ""}, "
+            f"Description: {description or ''}, "
             f"Amount: {amount:.2f} EUR\n> \n"
         ).strip().lower()
         if confirm in ("y", "yes"):
@@ -137,7 +150,7 @@ def add_expense():
     try:
         expenses_worksheet = SHEET.worksheet("expenses")
         expenses_worksheet.append_row(
-            [date_value, category, description, amount],
+            [date_value, name, category, description, amount],
             value_input_option="USER_ENTERED"
             )
         print("Expense added successfully!")
@@ -157,7 +170,7 @@ def view_totals():
     # Skip header
     for row in data[1:]:
         try:
-            amount = float(row[3].replace(",", "."))
+            amount = float(row[4].replace(",", "."))
             total += amount
         except (ValueError, IndexError):
             continue
@@ -173,7 +186,7 @@ def filter_by_category():
     expenses_worksheet = SHEET.worksheet("expenses")
     data = expenses_worksheet.get_all_values()
 
-    filtered = [row for row in data[1:] if row[1].lower() == category.lower()]
+    filtered = [row for row in data[1:] if row[2].lower() == category.lower()]
 
     if not filtered:
         print(f"No expenses found in category '{category}'.")
@@ -217,7 +230,7 @@ def view_monthly_totals():
             # Extract month
             month_key = date_obj.strftime("%Y-%m")
             # Grab values and transform them to a float
-            amount = float(row[3].replace(",", "."))
+            amount = float(row[4].replace(",", "."))
             totals_by_month[month_key] = totals_by_month.get(
                 month_key, 0) + amount
 
