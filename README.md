@@ -19,20 +19,26 @@ The focus is on simplicity, strict input validation, and reliable data storage.
 - Add new expenses with strict input Validation
 <img width="735" height="394" alt="Screenshot 2025-09-05 141003" src="https://github.com/user-attachments/assets/102dbb8c-2028-4a54-89bb-66e64d4cad69" />
 
+
 - Data is stored in Google Sheets via API
 <img width="733" height="357" alt="Screenshot 2025-09-05 141030" src="https://github.com/user-attachments/assets/bdf0a98b-0329-452a-af23-ff456db8a1d2" />
+
 
 - View total expenses
 <img width="748" height="297" alt="image" src="https://github.com/user-attachments/assets/7e6472cd-6f2c-467f-a1ce-8f4345f5e709" />
 
+
 - Filter by name
 <img width="733" height="331" alt="image" src="https://github.com/user-attachments/assets/b0002aea-9c1e-4102-8ee0-1c03b1d654d4" />
+
 
 - Filter by category
 <img width="738" height="246" alt="image" src="https://github.com/user-attachments/assets/d3f7b0e8-ad07-42be-aebd-cd4fdac8a4ed" />
 
+
 - Filter by date
 <img width="732" height="285" alt="image" src="https://github.com/user-attachments/assets/da6595ec-9b5f-40eb-8aa3-7095d1976b35" />
+
 
 - View monthly totals
 <img width="740" height="180" alt="image" src="https://github.com/user-attachments/assets/29490d11-dbc6-42a7-a63b-2eca2d8a3427" />
@@ -105,7 +111,7 @@ Passed the code through a PEP8 linter and confirmed there are no problems.
 <img width="974" height="640" alt="Screenshot 2025-09-05 133240" src="https://github.com/user-attachments/assets/0b94e463-48a9-4b54-a190-d48c9167cf2c" />
 
 ### Fixed Bugs
-- **Category Input Validation**: Initially, the input was normalized using .capitalize(). This meant both food and Food were accepted, but variations like fOOD were rejected. The fix was to switch to .lower() comparison, ensuring the validation is now fully case-insensitive and consistent.
+- **Category Input Validation**: Initially, the input was normalized using `.capitalize()`. This meant both food and Food were accepted, but variations like `fOOD` were rejected. The fix was to switch to `.lower()` comparison, ensuring the validation is now fully case-insensitive and consistent.
 - **Heroku Deployment Error (Procfile & .gitignore)**: Incorrect adjustments in the `Procfile` and `.gitignore` caused Heroku deployment to fail. Resetting both files to the original template Setup fixed the issue.
 - **Python Version Mismatch**: Deployment failed because the `.python-version` file specified `3.12.2`. Heroku only accepts major versions, so this was corrected to `3.12`, resolving the bug.
 - **Amount Validation Rounding**: Initially, inputs like `12.468` were stored as-is, leading to inconsistent decimals. The fix was to round all amounts to 2 decimal places, ensuring consistent formatting.
