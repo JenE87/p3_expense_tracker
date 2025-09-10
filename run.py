@@ -72,12 +72,16 @@ def prompt_category() -> str:
     Case-insensitive input.
     """
     while True:
-        raw = input(
-                f"Category ({', '.join(CATEGORIES)}): ").strip()
+        print("Available Categories:")
+        for c in CATEGORIES:
+            print(f"- {c}")
+        
+        raw = input("Category: ").strip()
+
         for c in CATEGORIES:
             if raw.lower() == c.lower():
                 return c
-        print(f"Invalid category. Please choose from: {', '.join(CATEGORIES)}")
+        print("Invalid category. Please choose from the list above.")
 
 
 def main_menu():
@@ -138,7 +142,7 @@ def add_expense():
             f"\nSave this expense? [Y/N]\n"
             f"Date: {date_value}, "
             f"Name: {name}, "
-            f"Amount: {amount:.2f} EUR, "
+            f"Amount: {amount:.2f} EUR,\n"
             f"Category: {category}, "
             f"Description: {description or ''}\n> \n"
         ).strip().lower()
@@ -196,15 +200,18 @@ def filter_by_name():
     else:
         print(f"Expenses of '{name}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]},\n"
-                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
-                  f"Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR,\n"
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def filter_by_category():
     """
     Show all expenses for a chosen category.
     """
+    print("Available Categories:")
+    for c in CATEGORIES:
+        print(f"- {c}")
+    
     category = prompt_category()
     expenses_worksheet = SHEET.worksheet("expenses")
     data = expenses_worksheet.get_all_values()
@@ -216,9 +223,8 @@ def filter_by_category():
     else:
         print(f"Expenses in category '{category}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]},\n"
-                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
-                  f"Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR,\n"
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def filter_by_date():
@@ -236,9 +242,8 @@ def filter_by_date():
     else:
         print(f"Expenses on {date_value}:")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]},\n"
-                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
-                  f"Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR,\n"
+                  f"Category: {row[3]}, Description: {row[4]}")
 
 
 def view_monthly_totals():
