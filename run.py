@@ -208,10 +208,6 @@ def filter_by_category():
     """
     Show all expenses for a chosen category.
     """
-    print("Available Categories:")
-    for c in CATEGORIES:
-        print(f"- {c}")
-    
     category = prompt_category()
     expenses_worksheet = SHEET.worksheet("expenses")
     data = expenses_worksheet.get_all_values()
