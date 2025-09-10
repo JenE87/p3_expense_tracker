@@ -124,7 +124,7 @@ def add_expense():
     """
     print("\n--- Add a New Expense ---")
 
-    print("Please provide the following information about your expense...\n")
+    print("Please provide the following information...\n")
     date_value = prompt_date()
     name = prompt_name()
     amount = prompt_amount()
@@ -196,8 +196,9 @@ def filter_by_name():
     else:
         print(f"Expenses of '{name}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
-                  f"Category: {row[3]}, Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]},\n"
+                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
+                  f"Description: {row[4]}")
 
 
 def filter_by_category():
@@ -215,8 +216,9 @@ def filter_by_category():
     else:
         print(f"Expenses in category '{category}':")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
-                  f"Category: {row[3]}, Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]},\n"
+                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
+                  f"Description: {row[4]}")
 
 
 def filter_by_date():
@@ -234,8 +236,9 @@ def filter_by_date():
     else:
         print(f"Expenses on {date_value}:")
         for row in filtered:
-            print(f"Date: {row[0]}, Name: {row[1]}, Amount: {row[2]} EUR, "
-                  f"Category: {row[3]}, Description: {row[4]}")
+            print(f"Date: {row[0]}, Name: {row[1]},\n"
+                  f"Amount: {row[2]} EUR, Category: {row[3]},\n"
+                  f"Description: {row[4]}")
 
 
 def view_monthly_totals():
