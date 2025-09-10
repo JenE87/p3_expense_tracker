@@ -75,7 +75,7 @@ def prompt_category() -> str:
         print("Available Categories:")
         for c in CATEGORIES:
             print(f"- {c}")
-        
+
         raw = input("Category: ").strip()
 
         for c in CATEGORIES:
