@@ -101,7 +101,7 @@ The focus is on simplicity, strict input validation, and reliable data storage.
 
 ### PEP8 Python Validator 
 Passed the code through a PEP8 linter and confirmed there are no problems.
-<img width="974" height="640" alt="Screenshot 2025-09-05 133240" src="https://github.com/user-attachments/assets/0b94e463-48a9-4b54-a190-d48c9167cf2c" />
+<img width="959" height="641" alt="Screenshot 2025-09-10 191501" src="https://github.com/user-attachments/assets/e5599560-2bbc-4921-9cc6-4aaef7601410" />
 
 ### Fixed Bugs
 - **Category Input Validation**: Initially, the input was normalized using `.capitalize()`. This meant both food and Food were accepted, but variations like `fOOD` were rejected. The fix was to switch to `.lower()` comparison, ensuring the validation is now fully case-insensitive and consistent.
