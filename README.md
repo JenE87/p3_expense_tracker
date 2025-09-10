@@ -17,32 +17,25 @@ The focus is on simplicity, strict input validation, and reliable data storage.
 ## Features
 ### Existing Features
 - Add new expenses with strict input Validation
-<img width="735" height="394" alt="Screenshot 2025-09-05 141003" src="https://github.com/user-attachments/assets/102dbb8c-2028-4a54-89bb-66e64d4cad69" />
-
+<img width="736" height="402" alt="Screenshot 2025-09-10 140831" src="https://github.com/user-attachments/assets/6b238378-f7d4-46a6-8a66-3ff43463b3bf" />
 
 - Data is stored in Google Sheets via API
-<img width="733" height="357" alt="Screenshot 2025-09-05 141030" src="https://github.com/user-attachments/assets/bdf0a98b-0329-452a-af23-ff456db8a1d2" />
-
+<img width="756" height="500" alt="Screenshot 2025-09-10 140946" src="https://github.com/user-attachments/assets/2af624c3-f2e2-4804-be7d-f9238a6a631e" />
 
 - View total expenses
 <img width="748" height="297" alt="image" src="https://github.com/user-attachments/assets/7e6472cd-6f2c-467f-a1ce-8f4345f5e709" />
 
-
 - Filter by name
-<img width="733" height="331" alt="image" src="https://github.com/user-attachments/assets/b0002aea-9c1e-4102-8ee0-1c03b1d654d4" />
-
+<img width="736" height="313" alt="Screenshot 2025-09-10 141057" src="https://github.com/user-attachments/assets/843234d5-21d6-41ad-ba3f-d3bc7509275a" />
 
 - Filter by category
-<img width="738" height="246" alt="image" src="https://github.com/user-attachments/assets/d3f7b0e8-ad07-42be-aebd-cd4fdac8a4ed" />
-
+<img width="742" height="346" alt="Screenshot 2025-09-10 141542" src="https://github.com/user-attachments/assets/fc488baa-0877-406b-b415-83cfcd9d8e1e" />
 
 - Filter by date
-<img width="732" height="285" alt="image" src="https://github.com/user-attachments/assets/da6595ec-9b5f-40eb-8aa3-7095d1976b35" />
-
+<img width="741" height="226" alt="Screenshot 2025-09-10 141637" src="https://github.com/user-attachments/assets/df7f84f7-bab4-441a-8084-01a18dedb1ff" />
 
 - View monthly totals
 <img width="740" height="180" alt="image" src="https://github.com/user-attachments/assets/29490d11-dbc6-42a7-a63b-2eca2d8a3427" />
-
 
 ## Future Features (optional)
 - Add categories
