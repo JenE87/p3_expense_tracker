@@ -5,7 +5,7 @@ A simple, reliable command-line Expense Tracker written in Python. It stores you
 <img width="1373" height="625" alt="Screenshot 2025-09-03 at 20 14 40" src="https://github.com/user-attachments/assets/6847ccf8-fd52-4d0c-a957-f68ea3bf4b73" />
 
 ## Project Overview
-The Expense Tracker is a simple command-lin app to record daily expenses directly into a Google Sheet.
+The Expense Tracker is a simple command-line app to record daily expenses directly into a Google Sheet.
 It is useful for:
 - Individuals who want to keep track of their personal budget
 - Families who want shared visibility of their spending
@@ -45,10 +45,27 @@ The focus is on simplicity, strict input validation, and reliable data storage.
 - Export to CSV
 
 ## Technologies Used
-- Python 3
-- gspread (Google Sheets API)
-- Google OAuth2 Credentials
-- Heroku (deployment)
+The following tools and technologies were used to build this project:
+### Languages
+- **Python 3.12** - main programming language
+
+### Libraries & Dependencies
+- **gspread** - for interacting with Google Sheets
+- **google-auth** - for authentication with Google APIs
+- **datetime** - for handling and validating dates
+
+### Tools & Services
+- **Git** & **GitHub** - version control and repository hosting
+- **Heroku** - deployment platform (with Python & NodeJS buildpacks)
+- **Google Sheets API** - database layer for expense storage
+- **Google Drive API** - enables sheet access and sharing
+- **LanguageTool** - for grammar, spelling, paraphrasing support in code strings and documentation
+- **ChatGPT** - for planning, debugging, and documentation support
+- **requirements.txt** - for dependency management
+
+### Development & IDE
+- **VS Code** - code editor
+- **Python virtual environment (venv)** - to isolate dependencies locally
 
 ## Google Sheet Setup
 - Create a Google Sheet with a tab named `expenses`
@@ -115,13 +132,51 @@ Passed the code through a PEP8 linter and confirmed there are no problems.
 None
 
 ## Deployment
-This Project was deployed using Code Institute's mock terminal for Heroku.
-- Steps for deployment:
-	- Fork or clone this repository
-	- Create a new Heroku app
-	- Set the buildpacks to `Python` and `NodeJS` in that order
-	- Link the Heroku app to the repository
-	- Click on **Deploy**
+### Local Setup
+To run this project locally on your machine:
+1. Clone the repository of this project or the [Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template) provided by Code Institute's LMS.
+2. Create and activate a virtual environment using venv and Python version 3.12.8
+3. Install dependencies by selecting ok during set up of the virtual environment or using `pip install -r requirements.txt`
+   	(*Note: If you add new dependencies locally, update the `requirements.txt` file using `pip3 freeze > requirements.txt` before pushing to GitHub.*)
+4. Check that your venv is running. If not, activate the virtual environment, using for example:
+ 	- `source .venv/bin/activate` (*for Mac/Linux*)
+	- `venv\Scripts\activate` OR `.\.venv\Scripts\Activate.ps1`(*for Windows*)
+5. Add `.venv` to the `.gitignore` file to ensure the virtual environemnt folder is excluded from version control.
+6. Google Sheet Setup
+   - Create a Google Cloud project and enable the **Google Sheets API** and **Google Drive API**.
+   - Generate service account credentials and download the `creds.json` file.
+   - Place `creds.json` in root directory of your project (Do not commit this file; it should be in `.gitignore`).
+   - You will need to share your Google Sheet with the **client_email** from your `creds.json` file so the app has permission to read and write to it.
+   - Create a Google Sheet named `expense_tracker` with a tab called `expenses` and the following columns:
+     	- Date
+     	- Name
+     	- Amount (in EUR)
+     	- Category
+     	- Description
+7. Run the program locally with `python3 run.py`
+
+## Version Control
+This project uses **Git** for version control.
+
+## Heroku Deployment
+1. Make sure your repository includes:
+	- `requirements.txt` (lists Python dependencies)
+	- `Procfile` (defines how Heroku runs your app `web: node index.js`)
+	- `.gitignore` (excludes files like `creds.json`)
+2. Log into [Heroku](https://www.heroku.com/) and create a **new app**.
+3. Under **Settings** create config vars, by adding the following keys and values:
+	- KEY: `CREDS` and VALUE: paste the entire content of your `creds.json` file here
+	(*Note: Never push your `creds.json` file directly to GitHub. It is already in `.gitignore`. Using Config Vars keeps your credentials secure.*)
+	- KEY: `PORT` and VALUE: `8000`
+4. Under **Settings**, add the buildpacks in this order:
+	- `Python`
+	- `NodeJS` 
+5. Connect your Heroku app to your **GitHub repository**:
+	- in the **Deploy** tab, link to your GitHub account and repository.
+	- Enable **Automatic Deploys** so your app updates every time you push changes to GitHub.
+6. Commit and push your changes (command i.e. "Prepare for Heroku deployment")
+7. If needed, trigger a manual build in Heroku by clicking **Deploy Branch** under the **Deploy** tab
+8. Once the build is finished, click **Open App** to launch your Expense Tracker
 
 ## Credits
 ### Code
