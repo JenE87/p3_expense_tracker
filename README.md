@@ -2,6 +2,7 @@
 A simple, reliable command-line Expense Tracker written in Python. It stores your entries in a connected Google Sheet, so your data stays transparent and portable. The app runs in the Code Institute mock terminal on Heroku and focuses on robust input validation and clean UX in the terminal.
 
 [Here is the live Version of my project.](https://p3-expense-tracker-f310cbe43264.herokuapp.com/)
+
 <img width="1373" height="625" alt="Screenshot 2025-09-03 at 20 14 40" src="https://github.com/user-attachments/assets/6847ccf8-fd52-4d0c-a957-f68ea3bf4b73" />
 
 ## Project Overview
