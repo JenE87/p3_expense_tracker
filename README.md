@@ -155,10 +155,10 @@ To run this project locally on your machine:
      	- Description
 7. Run the program locally with `python3 run.py`
 
-## Version Control
+### Version Control
 This project uses **Git** for version control.
 
-## Heroku Deployment
+### Heroku Deployment
 1. Make sure your repository includes:
 	- `requirements.txt` (lists Python dependencies)
 	- `Procfile` (defines how Heroku runs your app `web: node index.js`)
@@ -189,5 +189,6 @@ Other learning resources:
 - [Stack Overflow](https://stackoverflow.com/questions)
 - [Codeacademy Forums](https://discuss.codecademy.com/c/faqs/python-faq/1793)
 - [Real Python](https://realpython.com/)
+- [Genepy](https://genepy.org/)
 
 
